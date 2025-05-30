@@ -119,3 +119,39 @@
     @apply bg-background text-foreground;
   }
 }
+
+/* Hide scrollbar for category chips */
+.scrollbar-hide {
+  -ms-overflow-style: none;  /* Internet Explorer 10+ */
+  scrollbar-width: none;  /* Firefox */
+}
+
+.scrollbar-hide::-webkit-scrollbar { 
+  display: none;  /* Safari and Chrome */
+}
+
+/* Custom scrollbar for recommendations */
+.recommendations-scroll::-webkit-scrollbar {
+  width: 8px;
+}
+
+.recommendations-scroll::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+.recommendations-scroll::-webkit-scrollbar-thumb {
+  background: #c1c1c1;
+  border-radius: 4px;
+}
+
+.recommendations-scroll::-webkit-scrollbar-thumb:hover {
+  background: #a8a8a8;
+}
+
+/* Line clamp utility for text truncation */
+.line-clamp-2 {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
