@@ -9,13 +9,13 @@ export default function UserMenu() {
       <button className="focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 rounded-full">
         
         <Avatar className="w-8 h-8 hover:ring-2 hover:ring-gray-300 transition-all">
-          {/* User profile image - placeholder for now */}
+          {/* Remove the broken placeholder reference */}
           <AvatarImage 
-            src="/placeholder-avatar.jpg" 
+            src="" 
             alt="User profile"
           />
           
-          {/* Fallback if no image is available */}
+          {/* Fallback will show instead since src is empty */}
           <AvatarFallback className="bg-gradient-to-br from-red-700 to-red-800 text-white text-sm font-bold">
             M
           </AvatarFallback>

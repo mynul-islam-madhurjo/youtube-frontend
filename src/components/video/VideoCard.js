@@ -1,6 +1,7 @@
 'use client';
 
 import { getStaticUrl } from '@/lib/api';
+import SafeImage from '@/components/common/SafeImage';
 
 /**
  * VideoCard component for displaying video thumbnails and metadata
@@ -21,13 +22,11 @@ export default function VideoCard({ video }) {
     <div className="flex flex-col group cursor-pointer">
       {/* Video Thumbnail */}
       <div className="relative aspect-video bg-gray-200 rounded-lg overflow-hidden mb-3">
-        <img
+        <SafeImage
           src={getStaticUrl(video.thumbnail)}
           alt={video.title}
+          type="video"
           className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-200"
-          onError={(e) => {
-            e.target.src = '/placeholder-video.jpg'; // Fallback image
-          }}
         />
         
         {/* Duration badge */}
@@ -38,15 +37,14 @@ export default function VideoCard({ video }) {
 
       {/* Video Info */}
       <div className="flex gap-3">
-        {/* Channel Avatar */}
+        {/* Channel Avatar - Use SafeImage instead */}
         <div className="flex-shrink-0">
-          <img
+          <SafeImage
             src={getStaticUrl(video.channel.avatar)}
             alt={video.channel.name}
+            type="avatar"
+            fallbackText={video.channel.name.charAt(0).toUpperCase()}
             className="w-9 h-9 rounded-full object-cover"
-            onError={(e) => {
-              e.target.src = '/placeholder-avatar.jpg'; // Fallback avatar
-            }}
           />
         </div>
 
@@ -78,7 +76,7 @@ export default function VideoCard({ video }) {
           </div>
 
           {/* Views and Upload Date */}
-          <div className="text-sm text-gray-600 mt-1">
+          <div className="flex items-center mt-1 text-sm text-gray-600">
             <span>{formatViews(video.views)}</span>
             <span className="mx-1">•</span>
             <span>{video.uploaded_display}</span>
