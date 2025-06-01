@@ -58,33 +58,32 @@ export default function VideoDetails({ videoId = 33 }) {
 
   return (
     <div className="bg-white">
-      <div className="px-6 py-3">
-        {/* 1. VIDEO TITLE - 20px font, bold, 16px bottom margin */}
-        <h1 className="text-[20px] leading-[26px] font-semibold text-gray-900 mb-4">
+      <div className="px-4 sm:px-6 py-2 sm:py-3">
+        {/* 1. VIDEO TITLE - Reduced margin */}
+        <h1 className="text-[20px] leading-[26px] font-semibold text-gray-900 mb-2 sm:mb-3">
           {videoData.title}
         </h1>
 
-        {/* 2. MAIN ROW: Channel Info + Subscribe + Action Buttons */}
-        <div className="flex items-center justify-between mb-3">
+        {/* 2. MAIN ROW: Channel Info + Subscribe + Action Buttons - Reduced margin */}
+        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-2 sm:mb-3 space-y-2 sm:space-y-0">
           
           {/* LEFT SIDE: Channel Avatar + Name + Subscribe Button */}
           <div className="flex items-center space-x-3">
-            {/* Channel Avatar (40x40px) */}
+            {/* Channel Avatar - Smaller on mobile */}
             <SafeImage
               src={getAvatarUrl(videoData.channel.avatar, videoData.channel.name)}
               alt={`${videoData.channel.name} avatar`}
               type="avatar"
               fallbackText={videoData.channel.name.charAt(0).toUpperCase()}
-              className="w-10 h-10 rounded-full object-cover flex-shrink-0"
+              className="w-9 h-9 sm:w-10 sm:h-10 rounded-full object-cover flex-shrink-0"
             />
             
-            {/* Channel Name + Verified + Subscribers */}
+            {/* Channel Name + Info */}
             <div className="flex flex-col">
               <div className="flex items-center space-x-1">
                 <h3 className="font-semibold text-[14px] text-gray-900 leading-tight">
                   {videoData.channel.name}
                 </h3>
-                {/* Verified checkmark */}
                 <svg className="w-3 h-3 text-gray-500" fill="currentColor" viewBox="0 0 20 20">
                   <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
                 </svg>
@@ -94,20 +93,21 @@ export default function VideoDetails({ videoId = 33 }) {
               </p>
             </div>
 
-            {/* Subscribe Button - RIGHT NEXT TO CHANNEL INFO */}
-            <Button className="bg-black text-white hover:bg-gray-800 rounded-full px-4 py-1 text-[14px] font-medium h-9 ml-4">
+            {/* Subscribe Button - Compact */}
+            <Button className="bg-black text-white hover:bg-gray-800 rounded-full px-3 sm:px-4 py-1 text-[14px] font-medium h-8 sm:h-9 ml-3 sm:ml-4">
               Subscribe
             </Button>
           </div>
 
-          {/* RIGHT SIDE: Action Buttons */}
-          <div className="flex items-center space-x-2">
-            {/* Like/Dislike Combined Button */}
-            <div className="flex items-center bg-gray-100 rounded-full overflow-hidden">
+          {/* RIGHT SIDE: Action Buttons - More compact */}
+          <div className="flex items-center space-x-1 sm:space-x-2 overflow-x-auto scrollbar-hide">
+            
+            {/* Like/Dislike Combined Button - Compact */}
+            <div className="flex items-center bg-gray-100 rounded-full overflow-hidden flex-shrink-0">
               <Button
                 variant="ghost"
                 size="sm"
-                className={`rounded-none px-3 py-2 h-9 hover:bg-gray-200 ${
+                className={`rounded-none px-2 sm:px-3 py-1 sm:py-2 h-8 sm:h-9 hover:bg-gray-200 ${
                   isLiked ? 'text-blue-600' : 'text-gray-700'
                 }`}
                 onClick={() => {
@@ -115,19 +115,18 @@ export default function VideoDetails({ videoId = 33 }) {
                   if (isLiked) setIsDisliked(false);
                 }}
               >
-                <ThumbsUp className="w-4 h-4 mr-2" />
+                <ThumbsUp className="w-4 h-4 mr-1 sm:mr-2" />
                 <span className="text-sm font-medium">
                   {videoData.likes > 1000 ? `${Math.floor(videoData.likes / 1000)}K` : videoData.likes}
                 </span>
               </Button>
               
-              {/* Divider */}
-              <div className="w-px h-6 bg-gray-300"></div>
+              <div className="w-px h-5 sm:h-6 bg-gray-300"></div>
               
               <Button
                 variant="ghost"
                 size="sm"
-                className={`rounded-none px-3 py-2 h-9 hover:bg-gray-200 ${
+                className={`rounded-none px-2 sm:px-3 py-1 sm:py-2 h-8 sm:h-9 hover:bg-gray-200 ${
                   isDisliked ? 'text-blue-600' : 'text-gray-700'
                 }`}
                 onClick={() => {
@@ -139,72 +138,46 @@ export default function VideoDetails({ videoId = 33 }) {
               </Button>
             </div>
 
-            {/* Share Button */}
+            {/* Share Button - Compact */}
             <Button
               variant="ghost"
               size="sm"
-              className="rounded-full bg-gray-100 hover:bg-gray-200 text-gray-700 px-3 py-2 h-9"
+              className="rounded-full bg-gray-100 hover:bg-gray-200 text-gray-700 px-2 sm:px-3 py-1 sm:py-2 h-8 sm:h-9 flex-shrink-0"
             >
-              <Share className="w-4 h-4 mr-2" />
-              <span className="text-sm font-medium">Share</span>
+              <Share className="w-4 h-4 mr-1 sm:mr-2" />
+              <span className="text-sm font-medium hidden sm:inline">Share</span>
             </Button>
 
-            {/* Download Button */}
+            {/* Download Button - Compact */}
             <Button
               variant="ghost"
               size="sm"
-              className="rounded-full bg-gray-100 hover:bg-gray-200 text-gray-700 px-3 py-2 h-9"
+              className="rounded-full bg-gray-100 hover:bg-gray-200 text-gray-700 px-2 sm:px-3 py-1 sm:py-2 h-8 sm:h-9 flex-shrink-0"
             >
-              <Download className="w-4 h-4 mr-2" />
-              <span className="text-sm font-medium">Download</span>
+              <Download className="w-4 h-4 mr-1 sm:mr-2" />
+              <span className="text-sm font-medium hidden sm:inline">Download</span>
             </Button>
 
-            {/* Clip Button */}
+            {/* More Options - Compact */}
             <Button
               variant="ghost"
               size="sm"
-              className="rounded-full bg-gray-100 hover:bg-gray-200 text-gray-700 px-3 py-2 h-9"
-            >
-              <Scissors className="w-4 h-4 mr-2" />
-              <span className="text-sm font-medium">Clip</span>
-            </Button>
-
-            {/* Save Button */}
-            <Button
-              variant="ghost"
-              size="sm"
-              className={`rounded-full bg-gray-100 hover:bg-gray-200 px-3 py-2 h-9 ${
-                isSaved ? 'text-blue-600' : 'text-gray-700'
-              }`}
-              onClick={() => setIsSaved(!isSaved)}
-            >
-              <Bookmark className="w-4 h-4 mr-2" />
-              <span className="text-sm font-medium">Save</span>
-            </Button>
-
-            
-
-            {/* More Options */}
-            <Button
-              variant="ghost"
-              size="sm"
-              className="rounded-full bg-gray-100 hover:bg-gray-200 text-gray-700 p-2 h-9 w-9"
+              className="rounded-full bg-gray-100 hover:bg-gray-200 text-gray-700 p-1.5 sm:p-2 h-8 sm:h-9 w-8 sm:w-9 flex-shrink-0"
             >
               <MoreHorizontal className="w-4 h-4" />
             </Button>
           </div>
         </div>
 
-
-        {/* 4. DESCRIPTION SECTION */}
-        <div className="bg-gray-100 rounded-xl p-3 mb-6">
-          <div className="flex items-center text-[14px] text-gray-900 font-medium mb-2">
+        {/* 4. DESCRIPTION SECTION - Reduced padding and margin */}
+        <div className="bg-gray-100 rounded-xl p-2 sm:p-3 mb-3 sm:mb-4">
+          <div className="flex items-center text-[14px] text-gray-900 font-medium mb-1 sm:mb-2">
             <span>{videoData.views_display}</span>
             <span className="mx-2">•</span>
             <span>{videoData.uploaded_display}</span>
-            <span className="ml-4 text-gray-600 cursor-pointer hover:underline">#figma</span>
-            <span className="ml-2 text-gray-600 cursor-pointer hover:underline">#uxdesign</span>
-            <span className="ml-2 text-gray-600 cursor-pointer hover:underline">#uidesign</span>
+            <span className="ml-4 text-blue-600 cursor-pointer hover:underline">#figma</span>
+            <span className="ml-2 text-blue-600 cursor-pointer hover:underline">#uxdesign</span>
+            <span className="ml-2 text-blue-600 cursor-pointer hover:underline">#uidesign</span>
           </div>
           
           <div className="text-[14px] text-gray-900 leading-[20px]">
@@ -221,51 +194,19 @@ export default function VideoDetails({ videoId = 33 }) {
                 ...more
               </button>
             )}
-            
-            {showFullDescription && (
-              <>
-                <br /><br />
-                <div className="text-gray-700">
-                  <p>🔥 Use exclusive discount code 'VIP60' to get 60% off. Limited time only! 🔥</p>
-                </div>
-                <button 
-                  className="mt-2 text-gray-700 hover:text-gray-900 font-medium block"
-                  onClick={() => setShowFullDescription(false)}
-                >
-                  Show less
-                </button>
-              </>
-            )}
           </div>
         </div>
 
-        {/* 5. COMMENTS SECTION */}
-        <div className="mt-6">
-          {/* Comments Header - "196 Comments" and "Sort by" side by side on the left */}
-          <div className="flex items-center mb-6">
-            <h2 className="text-[20px] font-medium text-gray-900 mr-6">
-              196 Comments
-            </h2>
-            <button className="flex items-center text-[14px] text-gray-600 cursor-pointer hover:bg-gray-100 px-3 py-2 rounded transition-colors">
-              <svg className="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 24 24">
-                <path d="M3 18h6v-2H3v2zm0-5h12v-2H3v2zm0-5h18V6H3v2z" />
+        {/* 5. COMMENTS SECTION - Compact header */}
+        <div className="border-t border-gray-100 pt-3 sm:pt-4">
+          <div className="flex items-center justify-start space-x-4 mb-3 sm:mb-4">
+            <span className="text-[16px] font-semibold text-gray-900">196 Comments</span>
+            <button className="flex items-center space-x-1 text-[14px] font-medium text-gray-700 hover:text-gray-900">
+              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 16V4m0 0L3 8m4-4l4 4m6 0v12m0 0l4-4m-4 4l-4-4" />
               </svg>
-              <span className="font-medium">Sort by</span>
+              <span>Sort by</span>
             </button>
-          </div>
-
-          {/* Add Comment Input */}
-          <div className="flex items-start space-x-3 mb-8">
-            <div className="w-10 h-10 rounded-full bg-red-500 flex items-center justify-center text-white font-semibold text-[14px] flex-shrink-0">
-              M
-            </div>
-            <div className="flex-1">
-              <input
-                type="text"
-                placeholder="Add a comment..."
-                className="w-full text-[14px] text-gray-700 placeholder-gray-500 bg-transparent border-0 border-b border-gray-300 focus:border-blue-500 focus:outline-none pb-2 transition-colors"
-              />
-            </div>
           </div>
         </div>
       </div>

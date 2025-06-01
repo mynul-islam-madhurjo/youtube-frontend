@@ -2,12 +2,11 @@
 
 import { useState } from 'react';
 import Header from '@/components/layout/Header'
-import Sidebar from '@/components/layout/Sidebar'
 import MainContent from '@/components/layout/MainContent'
 import SearchResults from '@/components/video/SearchResults'
 
 /**
- * Main page component - Original video watch page
+ * Main page component - Video watch page without sidebar
  */
 export default function Home() {
   const [searchResults, setSearchResults] = useState(null);
@@ -29,19 +28,22 @@ export default function Home() {
   };
 
   return (
-    <div className="flex flex-col h-screen bg-white">
+    <div className="flex flex-col min-h-screen bg-white">
       
       {/* Header - Fixed at top */}
-      <Header />
+      <Header onSearchResults={handleSearchResults} />
       
-      <div className="flex flex-1 overflow-hidden">
-        
-        {/* Sidebar - Left navigation (restored) */}
-        {/* <Sidebar /> */}
-        
-        {/* Main Content - Video watch page */}
-        <MainContent />
-        
+      {/* Main Content - Full width without sidebar */}
+      <div className="flex-1">
+        {isSearchMode ? (
+          <SearchResults 
+            results={searchResults}
+            query={searchQuery}
+            onBackToHome={handleBackToHome}
+          />
+        ) : (
+          <MainContent />
+        )}
       </div>
     </div>
   )

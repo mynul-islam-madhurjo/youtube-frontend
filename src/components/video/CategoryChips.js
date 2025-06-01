@@ -52,20 +52,40 @@ export default function CategoryChips({ onCategoryChange, activeCategory = 'all'
   }
 
   return (
-    <div className="flex gap-3 mb-6 overflow-x-auto scrollbar-hide">
-      {categories.map((category) => (
-        <button
-          key={category.id}
-          onClick={() => handleCategoryClick(category.slug)}
-          className={`px-4 py-2 rounded-lg text-sm font-medium whitespace-nowrap transition-colors flex-shrink-0 ${
-            activeCategory === category.slug
-              ? 'bg-black text-white' // Active state: black background, white text
-              : 'bg-gray-100 text-gray-700 hover:bg-gray-200' // Inactive: light background
-          }`}
-        >
-          {category.name}
-        </button>
-      ))}
+    <div className="space-y-2 sm:space-y-3">
+      {/* Top Row - Filter Categories */}
+      <div className="flex gap-2 sm:gap-3 overflow-x-auto scrollbar-hide pb-2">
+        {categories.map((category) => (
+          <button
+            key={category.id}
+            onClick={() => handleCategoryClick(category.slug)}
+            className={`px-3 sm:px-4 py-1.5 sm:py-2 rounded-lg text-xs sm:text-sm font-medium whitespace-nowrap transition-colors flex-shrink-0 ${
+              activeCategory === category.slug
+                ? 'bg-black text-white'
+                : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+            }`}
+          >
+            {category.name}
+          </button>
+        ))}
+      </div>
+
+      {/* Bottom Row - Content Categories */}
+      {/* <div className="flex gap-2 sm:gap-3 overflow-x-auto scrollbar-hide pb-2">
+        {categories.map((category) => (
+          <button
+            key={category.id}
+            onClick={() => handleCategoryClick(category.slug)}
+            className={`px-3 sm:px-4 py-1.5 sm:py-2 rounded-lg text-xs sm:text-sm font-medium whitespace-nowrap transition-colors flex-shrink-0 ${
+              activeCategory === category.slug
+                ? 'bg-black text-white'
+                : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+            }`}
+          >
+            {category.name}
+          </button>
+        ))}
+      </div> */}
     </div>
   )
 }
