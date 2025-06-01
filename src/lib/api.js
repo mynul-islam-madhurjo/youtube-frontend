@@ -1,8 +1,3 @@
-/**
- * API Service Layer for YouTube Clone
- * Handles all communication with the Django backend
- */
-
 import { generateAvatarPlaceholder, generateVideoPlaceholder } from './placeholders';
 
 const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000/api';

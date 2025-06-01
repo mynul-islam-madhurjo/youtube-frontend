@@ -2,11 +2,7 @@ import React from 'react'
 import { Search, Mic } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 
-/**
- * Custom Search Bar Component
- * 
- * Creates a pixel-perfect YouTube search bar without shadcn Input conflicts
- */
+
 export default function SearchBar() {
   return (
     <div className="flex items-center max-w-2xl flex-1 mx-8">

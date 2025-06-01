@@ -1,14 +1,3 @@
-/**
- * Placeholder image generators
- * Creates base64 encoded SVG placeholders for missing images
- */
-
-/**
- * Generate avatar placeholder as base64 data URL
- * @param {string} initials - User initials (optional)
- * @param {number} size - Image size in pixels
- * @returns {string} Base64 data URL
- */
 export function generateAvatarPlaceholder(initials = '?', size = 40) {
   const svg = `
     <svg width="${size}" height="${size}" xmlns="http://www.w3.org/2000/svg">

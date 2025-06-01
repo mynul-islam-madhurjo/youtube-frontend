@@ -1,8 +1,3 @@
-/**
- * SearchResults Component
- * Displays search results from the API
- */
-
 'use client';
 
 import VideoGrid from './VideoGrid';

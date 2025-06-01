@@ -1,8 +1,3 @@
-/**
- * VideoGrid Component
- * Displays grid of videos with real API data
- */
-
 'use client';
 
 import VideoCard from './VideoCard';

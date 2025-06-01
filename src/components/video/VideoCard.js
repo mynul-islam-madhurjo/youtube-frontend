@@ -1,8 +1,3 @@
-/**
- * VideoCard Component
- * Displays individual video cards with real API data
- */
-
 'use client';
 
 import { getStaticUrl } from '@/lib/api';

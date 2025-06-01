@@ -1,12 +1,6 @@
 import React from 'react'
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
 
-/**
- * User Menu Component
- * 
- * Displays user profile picture and handles user menu interactions
- * Uses shadcn/ui Avatar component for proper styling
- */
 export default function UserMenu() {
   return (
     <div className="relative">

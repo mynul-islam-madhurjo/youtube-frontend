@@ -20,7 +20,6 @@ export default function VideoDetails({ videoId = 33 }) {
   const [isSaved, setIsSaved] = useState(false);
   const [showFullDescription, setShowFullDescription] = useState(false);
   
-  // Fetch video details from API
   const { video, loading, error } = useVideoDetails(videoId);
 
   if (loading) {
@@ -203,9 +202,9 @@ export default function VideoDetails({ videoId = 33 }) {
             <span>{videoData.views_display}</span>
             <span className="mx-2">•</span>
             <span>{videoData.uploaded_display}</span>
-            <span className="ml-4 text-blue-600 cursor-pointer hover:underline">#figma</span>
-            <span className="ml-2 text-blue-600 cursor-pointer hover:underline">#uxdesign</span>
-            <span className="ml-2 text-blue-600 cursor-pointer hover:underline">#uidesign</span>
+            <span className="ml-4 text-gray-600 cursor-pointer hover:underline">#figma</span>
+            <span className="ml-2 text-gray-600 cursor-pointer hover:underline">#uxdesign</span>
+            <span className="ml-2 text-gray-600 cursor-pointer hover:underline">#uidesign</span>
           </div>
           
           <div className="text-[14px] text-gray-900 leading-[20px]">
@@ -242,16 +241,17 @@ export default function VideoDetails({ videoId = 33 }) {
 
         {/* 5. COMMENTS SECTION */}
         <div className="mt-6">
-          <div className="flex items-center justify-between mb-6">
-            <h2 className="text-[20px] font-medium text-gray-900">
+          {/* Comments Header - "196 Comments" and "Sort by" side by side on the left */}
+          <div className="flex items-center mb-6">
+            <h2 className="text-[20px] font-medium text-gray-900 mr-6">
               196 Comments
             </h2>
-            <div className="flex items-center text-[14px] text-gray-600 cursor-pointer hover:bg-gray-100 px-2 py-1 rounded">
+            <button className="flex items-center text-[14px] text-gray-600 cursor-pointer hover:bg-gray-100 px-3 py-2 rounded transition-colors">
               <svg className="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 24 24">
                 <path d="M3 18h6v-2H3v2zm0-5h12v-2H3v2zm0-5h18V6H3v2z" />
               </svg>
-              <span>Sort by</span>
-            </div>
+              <span className="font-medium">Sort by</span>
+            </button>
           </div>
 
           {/* Add Comment Input */}

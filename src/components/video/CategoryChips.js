@@ -2,21 +2,7 @@
 import React, { useState } from 'react'
 import { useCategories } from '@/hooks/useApi'
 
-/**
- * Category Chips Component - Filter chips for video categories
- * 
- * Displays horizontal scrollable chips matching YouTube's design:
- * - Active state styling
- * - Hover effects
- * - Proper spacing and typography
- * 
- * Note: This is a client component because it uses useState for interactivity
- */
 
-/**
- * CategoryChips component for filtering videos
- * Now uses real API data instead of mock data
- */
 export default function CategoryChips({ onCategoryChange, activeCategory = 'all' }) {
   const { categories, loading, error } = useCategories();
 
@@ -44,11 +30,7 @@ export default function CategoryChips({ onCategoryChange, activeCategory = 'all'
   if (error) {
     console.error('Error loading categories:', error);
     // Fallback to default categories if API fails
-    const fallbackCategories = [
-      { id: 1, name: 'All', slug: 'all' },
-      { id: 2, name: 'Music', slug: 'music' },
-      { id: 3, name: 'Gaming', slug: 'gaming' },
-    ];
+    const fallbackCategories = [];
     
     return (
       <div className="flex gap-3 mb-6 overflow-x-auto scrollbar-hide">

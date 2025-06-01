@@ -8,20 +8,7 @@ import { Button } from '@/components/ui/button'
 import { ScrollArea } from '@/components/ui/scroll-area'
 import { NAVIGATION_ITEMS } from '@/constants'
 
-/**
- * YouTube Sidebar Component
- * 
- * Features:
- * - Main navigation (Home, Shorts, Subscriptions)
- * - Library section with user's content
- * - Explore section with categories
- * - Subscriptions list
- * - More from YouTube section
- * - Responsive design with collapsible states
- * - Exact YouTube styling and spacing
- */
 
-// Icon mapping for dynamic icon rendering
 const ICON_MAP = {
   Home: Home,
   Zap: Zap,
