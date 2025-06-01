@@ -3,43 +3,44 @@ import React from 'react'
 /**
  * Video Player Component - YouTube-accurate video player
  * 
- * Matches YouTube's exact video player dimensions and styling
+ * Updated to match YouTube's white background and exact styling
  */
 export default function VideoPlayer() {
   return (
-    <div className="w-full bg-black relative rounded-xl overflow-hidden">
+    <div className="w-full bg-white relative rounded-xl overflow-hidden border border-gray-200">
       {/* 
         Video container with YouTube styling:
         - w-full: Full width of container
-        - bg-black: Black background
+        - bg-white: WHITE background (changed from black)
         - relative: For absolute positioning
         - rounded-xl: CSS border-radius: 0.75rem; (12px - YouTube's rounded corners)
         - overflow-hidden: Clips content to rounded corners
+        - border border-gray-200: Light border like YouTube
       */}
       
-      <div className="aspect-video flex items-center justify-center">
+      <div className="aspect-video flex items-center justify-center bg-gray-100">
         {/* 
           Aspect ratio container:
           - aspect-video: CSS aspect-ratio: 16 / 9;
           - flex items-center justify-center: Centers content
+          - bg-gray-100: Light gray background for placeholder
         */}
         
         {/* Placeholder Content */}
-        <div className="text-center text-white">
+        <div className="text-center text-gray-600">
           {/* Play Button */}
-          <div className="w-20 h-20 bg-gray-800 bg-opacity-80 rounded-full flex items-center justify-center mb-4 mx-auto hover:bg-opacity-100 transition-all cursor-pointer">
+          {/* <div className="w-20 h-20 bg-black bg-opacity-80 rounded-full flex items-center justify-center mb-4 mx-auto hover:bg-opacity-100 transition-all cursor-pointer">
             <svg 
-              className="w-8 h-8 ml-1" 
+              className="w-8 h-8 ml-1 text-white" 
               fill="currentColor" 
               viewBox="0 0 24 24"
             >
               <path d="M8 5v14l11-7z"/>
             </svg>
-          </div>
+          </div> */}
           
           <div>
-            <h2 className="text-2xl font-semibold mb-2">You're in the perfect spot!</h2>
-            <p className="text-gray-300">Video player component - Ready for implementation</p>
+            <h2 className="text-2xl font-semibold mb-2 text-gray-800">You're in the perfect spot!</h2>
           </div>
         </div>
       </div>
