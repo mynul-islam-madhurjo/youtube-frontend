@@ -1,3 +1,5 @@
+'use client';
+
 import React from 'react'
 import CategoryChips from '@/components/video/CategoryChips'
 import VideoRecommendations from '@/components/video/VideoRecommendations'
@@ -93,14 +95,6 @@ export default function MainContent() {
         
         {/* Right Side - Recommended Videos */}
         <div className="w-96 flex-shrink-0 border-l border-gray-200 flex flex-col overflow-hidden">
-          {/* 
-            Right sidebar with YouTube's exact width:
-            - w-96: CSS width: 24rem; (384px - YouTube's exact sidebar width)
-            - flex-shrink-0: Prevents shrinking
-            - border-l border-gray-200: Left border
-            - flex flex-col: Vertical layout
-            - overflow-hidden: No overflow
-          */}
           
           {/* Category Filter Chips */}
           <div className="p-4 border-b border-gray-100">

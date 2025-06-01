@@ -7,8 +7,16 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "dev:backend": "cd ../backend && python manage.py runserver",
-    "dev:full": "concurrently \"npm run dev\" \"npm run dev:backend\""
+    
+    "backend:dev": "cd ../backend/youtube_api && python manage.py runserver",
+    "backend:migrate": "cd ../backend/youtube_api && python manage.py migrate",
+    "backend:seed": "cd ../backend/youtube_api && python manage.py seed_data",
+    "backend:setup": "npm run backend:migrate && npm run backend:seed",
+    
+
+    "dev:full": "concurrently \"npm run backend:dev\" \"npm run dev\" --names \"DJANGO,NEXTJS\" --prefix-colors \"blue,green\"",
+    "setup": "npm run backend:setup",
+    "start:all": "npm run dev:full"
   },
   "dependencies": {
     "@radix-ui/react-avatar": "^1.1.10",
@@ -27,6 +35,7 @@
   "devDependencies": {
     "@eslint/eslintrc": "^3",
     "@tailwindcss/postcss": "^4",
+    "concurrently": "^8.2.2",
     "eslint": "^9",
     "eslint-config-next": "15.3.2",
     "tailwindcss": "^4",

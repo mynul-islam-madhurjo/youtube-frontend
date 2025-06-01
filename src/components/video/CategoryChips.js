@@ -1,5 +1,6 @@
 'use client'
 import React, { useState } from 'react'
+import { useCategories } from '@/hooks/useApi'
 
 /**
  * Category Chips Component - Filter chips for video categories
@@ -12,56 +13,75 @@ import React, { useState } from 'react'
  * Note: This is a client component because it uses useState for interactivity
  */
 
-const categories = [
-  'All', 'Music', 'Gaming', 'News', 'Live', 'User interface design',
-  'Computer programming', 'Web development', 'Graphic design',
-  'Figma', 'Adobe', 'Typography', 'Wireframing'
-];
+/**
+ * CategoryChips component for filtering videos
+ * Now uses real API data instead of mock data
+ */
+export default function CategoryChips({ onCategoryChange, activeCategory = 'all' }) {
+  const { categories, loading, error } = useCategories();
 
-export default function CategoryChips() {
-  const [activeChip, setActiveChip] = useState('All');
+  // Handle category selection and notify parent component
+  const handleCategoryClick = (categorySlug) => {
+    if (onCategoryChange) {
+      onCategoryChange(categorySlug);
+    }
+  };
+
+  if (loading) {
+    return (
+      <div className="flex gap-3 mb-6 overflow-x-auto scrollbar-hide">
+        {/* Loading skeleton */}
+        {[...Array(8)].map((_, index) => (
+          <div 
+            key={index}
+            className="animate-pulse bg-gray-200 rounded-lg h-8 w-20 flex-shrink-0"
+          />
+        ))}
+      </div>
+    );
+  }
+
+  if (error) {
+    console.error('Error loading categories:', error);
+    // Fallback to default categories if API fails
+    const fallbackCategories = [
+      { id: 1, name: 'All', slug: 'all' },
+      { id: 2, name: 'Music', slug: 'music' },
+      { id: 3, name: 'Gaming', slug: 'gaming' },
+    ];
+    
+    return (
+      <div className="flex gap-3 mb-6 overflow-x-auto scrollbar-hide">
+        {fallbackCategories.map((category) => (
+          <button
+            key={category.id}
+            onClick={() => handleCategoryClick(category.slug)}
+            className={`px-4 py-2 rounded-lg text-sm font-medium whitespace-nowrap transition-colors ${
+              activeCategory === category.slug
+                ? 'bg-black text-white' // Active state: black background, white text
+                : 'bg-gray-100 text-gray-700 hover:bg-gray-200' // Inactive: light background
+            }`}
+          >
+            {category.name}
+          </button>
+        ))}
+      </div>
+    );
+  }
 
   return (
-    <div className="flex items-center space-x-3 overflow-x-auto scrollbar-hide pb-2">
-      {/* 
-        Container:
-        - flex items-center: Horizontal layout with center alignment
-        - space-x-3: CSS gap: 0.75rem; (12px horizontal gap between chips)
-        - overflow-x-auto: CSS overflow-x: auto; (horizontal scrolling)
-        - scrollbar-hide: Custom class to hide scrollbar
-        - pb-2: CSS padding-bottom: 0.5rem; (8px bottom padding)
-      */}
-      
+    <div className="flex gap-3 mb-6 overflow-x-auto scrollbar-hide">
       {categories.map((category) => (
         <button
-          key={category}
-          onClick={() => setActiveChip(category)}
-          className={`
-            flex-shrink-0 px-3 py-1.5 rounded-full text-sm font-medium transition-all duration-200
-            ${activeChip === category 
-              ? 'bg-black text-white' 
-              : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
-            }
-          `}
+          key={category.id}
+          onClick={() => handleCategoryClick(category.slug)}
+          className={`px-4 py-2 rounded-lg text-sm font-medium whitespace-nowrap transition-colors flex-shrink-0 ${
+            activeCategory === category.slug
+              ? 'bg-black text-white' // Active state: black background, white text
+              : 'bg-gray-100 text-gray-700 hover:bg-gray-200' // Inactive: light background
+          }`}
         >
-          {/* 
-            Chip button styling:
-            - flex-shrink-0: CSS flex-shrink: 0; (prevents shrinking)
-            - px-3 py-1.5: CSS padding: 0.375rem 0.75rem; (6px vertical, 12px horizontal)
-            - rounded-full: CSS border-radius: 9999px; (pill shape)
-            - text-sm: CSS font-size: 0.875rem; (14px font)
-            - font-medium: CSS font-weight: 500; (medium weight)
-            - transition-all duration-200: Smooth transitions
-            
-            Active state:
-            - bg-black text-white: Black background with white text
-            
-            Inactive state:
-            - bg-gray-100: Light gray background
-            - text-gray-700: Dark gray text
-            - hover:bg-gray-200: Darker gray on hover
-          */}
-          {category}
+          {category.name}
         </button>
       ))}
     </div>
